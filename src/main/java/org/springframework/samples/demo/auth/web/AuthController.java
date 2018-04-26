@@ -115,7 +115,7 @@ public class AuthController {
                    pro.destroy();
                 }
                 catch (Exception e) {
-                   logger.info("aaa");
+                   logger.info(e);
                 }
              }
         } catch (Exception e) {

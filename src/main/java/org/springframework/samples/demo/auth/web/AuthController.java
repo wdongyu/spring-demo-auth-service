@@ -48,7 +48,6 @@ public class AuthController {
         //return "Token from Authenticate";
         
         if (param.equals("portal")) {
-            //logger.info(username + ":" + password);
             String authId = getCommitId(serviceInfo());
             Random random = new Random();
             String retUsername = null;

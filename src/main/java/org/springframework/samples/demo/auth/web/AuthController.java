@@ -43,7 +43,7 @@ public class AuthController {
 
     String path = properties.getProperty("user.dir");
 
-    private File gitFile = new File(path + "/src/main/resource/git.properties");
+    private File gitFile = new File(path + "/src/main/resources/git.properties");
 
     @Autowired
     private DiscoveryClient client;
@@ -56,7 +56,7 @@ public class AuthController {
 
         if ( gitFile.isFile() && gitFile.exists()) {}
         else 
-            execCommand("cp ./target/classes/git.properties ./src/main/resource/git.properties");
+            execCommand("cp ./target/classes/git.properties ./src/main/resources/git.properties");
         
         if (param.equals("portal")) {
             String authId = getCommitId(serviceInfo());

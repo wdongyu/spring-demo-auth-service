@@ -19,6 +19,7 @@ import java.util.List;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import java.util.Random;
+import java.io.File;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
@@ -38,6 +39,12 @@ public class AuthController {
 
     private HashMap<String, String> map = new HashMap<String, String>();
 
+    Properties properties = System.getProperties();
+
+    String path = properties.getProperty("user.dir");
+
+    private File gitFile = new File(path + "/src/main/resource/git.properties");
+
     @Autowired
     private DiscoveryClient client;
 
@@ -46,6 +53,10 @@ public class AuthController {
         //ServiceInstance instance = client.getLocalServiceInstance();
         //logger.info("/auth, host:" + instance.getHost() + ", service_id:" + instance.getServiceId());
         //return "Token from Authenticate";
+
+        if ( gitFile.isFile() && gitFile.exists()) {}
+        else 
+            execCommand("cp ./target/classes/git.properties ./src/main/resource/git.properties");
         
         if (param.equals("portal")) {
             String authId = getCommitId(serviceInfo());
@@ -74,8 +85,6 @@ public class AuthController {
     @RequestMapping(value = "/servicePath" ,method = RequestMethod.GET)
     @CrossOrigin(origins = "*")
     public JSONObject servicePath() {
-        Properties properties = System.getProperties();
-        String path = properties.getProperty("user.dir");
         String res = "{\"path\" : \"" + path + "\"}";
 
         //execCommand("/usr/bin/open -a /Applications/Utilities/Terminal.app");
